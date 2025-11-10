@@ -155,12 +155,12 @@ const Header = () => {
               title: "Video Surveillance",
               path: "/solution/video-surveillance",
             },
-            { title: "Intelligent Traffic Solution", path: "/TrafficSolution" },
+            { title: "Intelligent Traffic Solution", path: "/solution/intelligent-traffic-solution" },
             { title: "Smart Restroom", path: "/solution/smartrestroom" },
-            { title: "Indoor Air Quality", path: "/AirQuality" },
+            { title: "Indoor Air Quality", path: "/solution/indoor-air-quality" },
             { title: "Smart Space", path: "/solution/smart-spaces" },
             { title: "People Counting", path: "/Solution/PeopleCounting" },
-            { title: "Smart HVAC Management", path: "/SmartHVAC" },
+            { title: "Smart HVAC Management", path: "/solution/smart-hvac-management" },
             { title: "Space Occupancy", path: "/Solution/SpaceOccupancy" },
           ],
         },
@@ -515,7 +515,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/CitySurveillance"
+                                    to="/solution/city-surveillance"
                                     className="common-dropdown__link"
                                   >
                                     City Surveillance
@@ -523,7 +523,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/healthcare"
+                                    to="/solution/healthcare"
                                     className="common-dropdown__link"
                                   >
                                     Healthcare
@@ -586,7 +586,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/smart-parking"
+                                    to="/solution/smart-parking"
                                     className="common-dropdown__link"
                                   >
                                     Smart Parking
@@ -601,7 +601,7 @@ const Header = () => {
                               <ul>
                                 <li>
                                   <NavLink
-                                    to="/Solution/TrafficSolution"
+                                    to="/solution/intelligent-traffic-solution"
                                     className="common-dropdown__link"
                                   >
                                     Intelligent Traffic Solution
@@ -609,7 +609,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/manufacturing"
+                                    to="/solution/manufacturing"
                                     className="common-dropdown__link"
                                   >
                                     Manufacturing
@@ -617,7 +617,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/education"
+                                    to="/solution/education"
                                     className="common-dropdown__link"
                                   >
                                     Education
@@ -625,7 +625,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/AirQuality"
+                                    to="/solution/indoor-air-quality"
                                     className="common-dropdown__link"
                                   >
                                     Indoor Air Quality
@@ -633,7 +633,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/Solution/energy-efficiency"
+                                    to="/solution/energy-efficiency"
                                     className="common-dropdown__link"
                                   >
                                     Energy Efficiency

@@ -399,6 +399,51 @@ img.absolute.top-64.right-40.transform.-translate-y-1\/2.z-20.right{
 .img.bg-image{
   object-fit: cover;
 }
+
+/* ==================== Display & Control Enhancements ==================== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+}
+.bg-gradient-primary {
+  background: linear-gradient(135deg, rgba(11, 79, 141, 0.8), rgba(25, 166, 216, 0.8));
+}
+.transition-opacity {
+  transition: opacity 0.3s ease;
+}
+.hover-lift:hover .bg-gradient-primary {
+  opacity: 0.18;
+}
+.letter-spacing {
+  letter-spacing: 0.08em;
+}
+.bullet-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+.backdrop-blur-lg {
+  backdrop-filter: blur(18px);
+}
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+.py-lg-6 {
+  padding-top: 4.5rem !important;
+  padding-bottom: 4.5rem !important;
+}
+@media (max-width: 991.98px) {
+  .py-lg-6 {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+}
 .featuresbutton{
   font-size: 12px;
   border: 1px solid #808080;

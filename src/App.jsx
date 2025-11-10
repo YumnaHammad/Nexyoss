@@ -16,7 +16,6 @@ import Slider from "./pages/Slider";
 import Footer from "./components/Footer";
 import SuccessStories from "./components/SuccessStories";
 import ContactPage from "./pages/ContactPage";
-// import DemoPage from "./components/DemoPage";
 import Header from "./components/Header";
 import ChannelPage from "./pages/Partner/ChannelPage";
 import PartnerProgram from "./pages/Partner/ChannelPartner";
@@ -64,6 +63,7 @@ import Smart_Restroom from "./pages/Solution/Smart_Restroom";
 // import Smart_Space from "./pages/Solution/Smart_Space";
 import SmartApartment from "./pages/Solution/SmartApartment";
 import SmartParking from "./pages/Solution/SmartParking";
+import DemoPage from "./pages/DemoPage";
 
 function App() {
   const location = useLocation();
@@ -132,6 +132,7 @@ function App() {
         <Route path="/Blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/News" element={<NewsPage />} />
+        <Route path="/demo" element={<DemoPage />} />
         <Route path="/soll" element={<SollPage />} />
         <Route path="/developer-partner" element={<DeveloperPartner />} />
         <Route path="/technology-partner" element={<TechnologyPartner />} />
