@@ -1,5 +1,9 @@
 import "./App.scss";
-import './index.css';
+import "./index.css";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Home from "./pages/Home";
 import BottomFooter from "./components/BottomFooter";
 import RouteScrollToTop from "./helper/RouteScrollToTop";
@@ -12,7 +16,7 @@ import Slider from "./pages/Slider";
 import Footer from "./components/Footer";
 import SuccessStories from "./components/SuccessStories";
 import ContactPage from "./pages/ContactPage";
-// import DemoPage from "./components/DemoPage";
+import DemoPage from "./pages/DemoPage";
 import Header from "./components/Header";
 import ChannelPage from "./pages/Partner/ChannelPage";
 import PartnerProgram from "./pages/Partner/ChannelPartner";
@@ -40,7 +44,7 @@ import Categorycall from "./components/Categorycall";
 import ProCamera from "./components/ProCamera";
 import Solution from "./pages/Solution/index";
 import SollPage from "./components/SollPage";
-import ProductsPage from "./pages/ProductsEnhanced"; 
+import ProductsPage from "./pages/ProductsEnhanced";
 import SubCategoryPage from "./components/SubCategoryPage";
 import SmartSpaces from "./pages/Solution/SmartSpaces";
 import Hotel from "./pages/Solution/Hotel";
@@ -86,7 +90,7 @@ function App() {
       <ScrollToTop smooth color="#FA6400" className="p-0 justify-center items-center flex" />
       <ToastContainer />
       <Preloader />
-      <Header />
+      {!hideHeaderFooter && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<ProductDetail />} />
@@ -138,8 +142,8 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/partner" element={<Partner />} />
       </Routes>
-      <Footer />
-      <BottomFooter />
+      {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && <BottomFooter />}
     </>
   );
 }

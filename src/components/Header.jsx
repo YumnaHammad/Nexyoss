@@ -491,9 +491,9 @@ const Header = () => {
                         </Link>
                       </li>
                       <li className="on-hover-item nav-menu__item has-megamenu has-submenu"  style={{ textAlign: 'left' }}>
-                        <Link to="/" className="nav-menu__link">
+                        <div className="nav-menu__link">
                           <Mega />
-                        </Link>
+                        </div>
                       </li>
                       <li className="on-hover-item nav-menu__item has-megamenu has-submenu">
                         <Link to="/solution" className="nav-menu__link">
