@@ -18,11 +18,11 @@ const BlogPage = () => {
     const fetchBlogsAndCategories = async () => {
       try {
         // Fetch blogs
-        const blogRes = await axios.get("https://portal.nexyos.com/api/all/blogs");
+        const blogRes = await axios.get("https://nexyos.deeptech.pk/api/blogs");
         const formatted = blogRes.data.map((blog) => ({
           id: blog.id,
-          title: blog.heading, // ✅ from API
-          excerpt: blog.description?.replace(/(<([^>]+)>)/gi, "").slice(0, 120) + "...", // ✅ from API
+          title: blog.head, 
+          excerpt: blog.desc?.replace(/(<([^>]+)>)/gi, "").slice(0, 120) + "...", // ✅ from API
           date: "August 2025",
           categories: Array.isArray(blog.categories) && blog.categories.length > 0
             ? [...new Set(blog.categories)]
@@ -32,7 +32,7 @@ const BlogPage = () => {
         setBlogs(formatted);
 
         // Fetch categories separately from API
-        const catRes = await axios.get("https://portal.nexyos.com/api/all/categories");
+        const catRes = await axios.get("https://nexyos.deeptech.pk/api/blogs/category");
         const uniqueCategories = Array.isArray(catRes.data)
           ? [...new Set(catRes.data.map(cat => cat.name))]
           : [];

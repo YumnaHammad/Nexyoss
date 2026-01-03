@@ -13,12 +13,17 @@ const About = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('https://portal.nexyos.com/api/about/sec/three')
+    axios
+      .get('https://nexyos.deeptech.pk/api/about-us/section-3')
       .then((response) => {
-        if (Array.isArray(response.data)) {
-          setData(response.data);
+        const resp = response.data;
+        if (Array.isArray(resp)) {
+          setData(resp);
+        } else if (resp) {
+          setData([resp]);
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error("Error fetching banner data:", error);
       });
   }, []);
@@ -76,16 +81,20 @@ const About = () => {
                         const apiItem = data[groupIndex * 3 + index];
                         if (!apiItem) return null;
 
+                        const image = apiItem.image || apiItem.img || apiItem.image_url || apiItem.src || "";
+                        const head = apiItem.head || apiItem.title || apiItem.heading || apiItem.name || "";
+                        const desc = apiItem.desc || apiItem.description || apiItem.body || "";
+
                         return (
                           <div className="card" key={index}>
                             <img
-                              alt={`icon for ${item.title}`}
-                              src={apiItem.image}
+                              alt={`icon for ${head}`}
+                              src={image}
                               className="lazyloaded"
-                              title={`icon for ${item.title}`}
+                              title={`icon for ${head}`}
                             />
-                            <h3 className="card-title" data-aos="fade-right">{apiItem.head}</h3>
-                            <p className="card-text">{apiItem.desc}</p>
+                            <h3 className="card-title" data-aos="fade-right">{head}</h3>
+                            <p className="card-text">{desc}</p>
                           </div>
                         );
                       })}

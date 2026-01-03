@@ -8,10 +8,13 @@ const BannerAbout = () => {
 
   useEffect(() => {
     axios
-      .get("https://portal.nexyos.com/api/about/sec/one")
+      .get("https://nexyos.deeptech.pk/api/about-us/section-1")
       .then((res) => {
-        if (Array.isArray(res.data)) {
-          setBannerData(res.data);
+        const data = res.data;
+        if (Array.isArray(data)) {
+          setBannerData(data);
+        } else if (data) {
+          setBannerData([data]);
         }
       })
       .catch((err) => {
@@ -23,12 +26,16 @@ const BannerAbout = () => {
 
   return (
     <>
-      {bannerData.map((item, index) => (
+      {bannerData.map((item, index) => {
+        const image = item.image || item.img || item.image_url || item.src || "";
+        const heading = item.heading || item.head || item.title || item.name || "";
+        const description = item.description || item.desc || item.body || item.content || "";
+        return (
         <div
           key={index}
           className="BannerPSCS"
           style={{
-            backgroundImage: `url(${item.image})`,
+            backgroundImage: `url(${image})`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -44,13 +51,14 @@ const BannerAbout = () => {
                 className="banner-item-two__title bounce text-black"
                 data-aos="fade-right"
               >
-                {item.head}
+                {heading}
               </h2>
-              <p className="mt-4 text-black text-lg">{item.desc}</p>
+              <p className="mt-4 text-black text-lg">{description}</p>
             </div>
           </div>
         </div>
-      ))}
+        );
+      })}
     </>
   );
 };
