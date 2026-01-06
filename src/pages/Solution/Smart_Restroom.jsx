@@ -1,5 +1,4 @@
-import React from 'react'
-import Banner from '../../components/Banner'
+import React ,{useEffect, useState} from 'react'
 import ReshapRestrom from '../../components/Solution/SmartRestroom/ReshapRestrom'
 import ImageRightText from '../../components/ImageRightText'
 import RestroomCard from '../../components/Solution/SmartRestroom/RestroomCard'
@@ -7,8 +6,10 @@ import InterestedSection from '../../components/Solution/InterestedSection'
 import retail_related_links from "../../assets/images/nexyos/retail_related_links.png";
 import extrance from "../../assets/images/nexyos/extrance.jpg";
 import Store1 from "../../assets/images/nexyos/Store1.jpg";
+import BannerSection from '../../components/BannerSection'
 
 const Smart_Restroom = () => {
+     const [BannerData, setBannerData] = useState(null);
   const data = [
     {
       title: "Entrance & Exit Management",
@@ -29,18 +30,36 @@ const Smart_Restroom = () => {
       image: retail_related_links,
     },
   ];
+    const fetchBannerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/smart-restroom/section-1"
+      );
+      const data = await response.json();
+      setBannerData(Array.isArray(data) ? data[0] : data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
+
+    useEffect(() => {
+    fetchBannerData();
+  }, []);
   return (
     <>
-      <Banner 
-        title="Smart Restroom Solutions"
-        description="Revolutionary IoT-powered restroom management systems for enhanced hygiene, efficiency, and user experience"
-        backgroundImage="https://www.dahuasecurity.com/asset/upload/banner/20171227/solutions.jpg"
-        customClass="h-96"
-        contentClass="text-center px-36"
-        h2Class="text-6xl font-bold mb-4 text-left"
-        pClass="text-2xl text-left w-2xl"
-      />
-      
+          {/* Hero Section */}
+                {BannerData && (
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title={BannerData.heading}
+          subtitle={BannerData.description}
+          image={BannerData.image}
+        />
+      )}
       <div className="mt-5">
         <ReshapRestrom/>
       </div>

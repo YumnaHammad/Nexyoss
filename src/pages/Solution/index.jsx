@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../../style/Solution.css';
-import Banner from '../../components/Banner';
 import Tab from '../../components/Solution/TrafficTab/Tab';
 import HotProductSlider from '../../components/Solution/OutstandingFeatures/HotProductSlider';
 import Contact from '../../components/Contact';
@@ -39,6 +38,7 @@ import GNSS_Vehicle_Trajectory from '../../assets/images/Solution/GNSS-Vehicle-T
 import onboard_passenger_counting from '../../assets/images/Solution/onboard-passenger-counting-icon.png';
 import Advanced_Driving_Assistance from '../../assets/images/Solution/Advanced-Driving-Assistance.png';
 import { Subtitles } from 'lucide-react';
+import BannerSection from '../../components/BannerSection';
 
 const Solution = () => {
   const [activeTab, setActiveTab] = useState("");
@@ -261,16 +261,15 @@ const Solution = () => {
 
   return (
     <div>
-      <Banner
-        title="Powering Smart Surveillance"
-        description="Explore how cutting-edge AI and IoT solutions transform security landscapes globally."
-        backgroundVideo="https://static.vecteezy.com/system/resources/previews/011/389/863/mp4/moving-cars-on-the-motorway-during-sunset-busy-traffic-on-a-freeway-or-highway-top-view-of-the-road-the-golden-rays-of-the-evening-sun-illuminate-the-transport-ukraine-kyiv-october-3-2021-free-video.mp4"
-        customClass="my-custom-banner"
-        contentClass="text-center "
-        titleClass="text-4xl font-bold justify-center items-center flex"
-        descriptionClass="text-lg"
-      />
-
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title="Powering Smart Surveillance"
+          subtitle="Explore how cutting-edge AI and IoT solutions transform security landscapes globally."
+          image="https://static.vecteezy.com/system/resources/previews/011/389/863/mp4/moving-cars-on-the-motorway-during-sunset-busy-traffic-on-a-freeway-or-highway-top-view-of-the-road-the-golden-rays-of-the-evening-sun-illuminate-the-transport-ukraine-kyiv-october-3-2021-free-video.mp4"
+        />
       {/* Tabs with scroll */}
       <div className="fixed top-[74px] bg-white z-100 w-full" >
         <div className="flex gap-6 px-4 py-3 border-b border-gray-200">

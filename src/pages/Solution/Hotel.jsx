@@ -1,5 +1,4 @@
 import React from 'react'
-import Banner from '../../components/Banner'
 import TrustedBy from '../../components/SpaceOccupancy/TrustedBy'
 import SecurityTabs from '../../components/SpaceOccupancy/SecurityTabs'
 import SmartWorkspace from '../../components/SpaceOccupancy/SmartWorkspace'
@@ -17,6 +16,7 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { FaBalanceScaleLeft } from "react-icons/fa";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GrShieldSecurity } from "react-icons/gr";
+import BannerSection from '../../components/BannerSection'
 
 const Hotel = () => {
 
@@ -168,14 +168,17 @@ const securityTabs = [
 
   return (
     <div>
-      <Banner  
-       backgroundImage='https://www.milesight.com/static/pc/en/solution/people-counting/occupancy-and-people-counting-solution.jpg?t=1754899499415'
-      containerClass="top-1/3 left-10"
-        h2Class="text-4xl font-bold text-left text-white"
-        pClass="text-lg max-w-lg text-left"
-         title="Smart People Counting Solution for Different Applications"
-        description="The Reliable People Counter Makes Decisions Smart"
-/>
+     {/* Hero Section */}
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title="Smart People Counting Solution for Different Applications"
+          subtitle="The Reliable People Counter Makes Decisions Smart"
+          image='https://www.milesight.com/static/pc/en/solution/people-counting/occupancy-and-people-counting-solution.jpg?t=1754899499415'
+        />
+
 <TrustedBy/>
 <SecurityTabs tabs={securityTabs}/>
 <SmartWorkspace/>

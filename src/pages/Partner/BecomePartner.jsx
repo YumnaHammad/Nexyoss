@@ -1,20 +1,53 @@
 import React, { useState, useEffect } from "react";
 
-
 import Contact from "../../components/Contact";
 import HeroSection from "../../components/Partner/BecomePartner/HeroSection";
 import PartnerSection from "../../components/Partner/BecomePartner/PartnerSection";
-import WhyPartner from "../../components/Partner/BecomePartner/WhyPartner";
 import Partnership from "../../components/Partner/BecomePartner/Partnership";
 import Application from "../../components/Partner/BecomePartner/Application";
 import CallToAction from "../../components/Partner/BecomePartner/CallToAction";
+import WhyChooseUs from "../../components/WhyChooseUs";
+import BannerSection from "../../components/BannerSection";
 
 const BecomePartner = () => {
   const [, setIsVisible] = useState(false);
-
+  const [PartnerData, setPartnerData] = useState(null);
+  const [BannerData, setBannerData] = useState(null);
+  // const subHeadings = PartnerData
+  //   ? [
+  //       PartnerData.sub_heading1,
+  //       PartnerData.sub_heading2,
+  //       PartnerData.sub_heading3,
+  //     ].filter(Boolean)
+  //   : [];
+  const fetchBannerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/become-partner/section-1"
+      );
+      const data = await response.json();
+      setBannerData(Array.isArray(data) ? data[0] : data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
+  const fetchPartnerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/become-partner/section-3"
+      );
+      const data = await response.json();
+      setPartnerData(data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
   // Animation effects
   useEffect(() => {
     setIsVisible(true);
+    fetchPartnerData();
+    fetchBannerData();
   }, []);
   // CSS animations
   const animations = `
@@ -116,11 +149,36 @@ const BecomePartner = () => {
     <>
       <style>{animations}</style>
       {/* Hero Section */}
-      <HeroSection />
+      {BannerData && (
+        <BannerSection
+          gradient="linear-gradient(
+    135deg,
+    rgba(102, 126, 234) 0%,
+    rgba(118, 75, 162)100%
+  )"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title={BannerData.heading}
+          subtitle={BannerData.description}
+          image={BannerData.image}
+        />
+      )}
       {/* Become a Partner Section */}
       <PartnerSection />
       {/* Why Partner with Nexyos Section */}
-      <WhyPartner />
+      {PartnerData && (
+        <WhyChooseUs
+          heading={PartnerData.heading || " Why Partner with Nexyos?"}
+          subHeadings={[
+            PartnerData.sub_heading1,
+            PartnerData.sub_heading2,
+            PartnerData.sub_heading3,
+          ].filter(Boolean)}
+          image={PartnerData.image || ""}
+          badgeText="Interactive Preview"
+        />
+      )}
       {/* Partnership Types Section with Swiper */}
       <Partnership />
       {/* Application Process Section */}

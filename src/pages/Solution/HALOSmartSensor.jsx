@@ -1,5 +1,4 @@
 import React from 'react';
-import Banner from '../../components/Banner';
 import TrustedBy from '../../components/SpaceOccupancy/TrustedBy';
 import SecurityTabs from '../../components/SpaceOccupancy/SecurityTabs';
 import { GiAwareness } from "react-icons/gi";
@@ -14,6 +13,7 @@ import { TbDeviceAnalytics } from "react-icons/tb";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { BiSupport } from "react-icons/bi";
+import BannerSection from '../../components/BannerSection';
 
 const HALOSmartSensor = () => {
 
@@ -132,16 +132,16 @@ const HALOSmartSensor = () => {
   
   return (
     <>
-      <Banner
-        title="HALO Smart Sensor"
-        description="Advanced environmental monitoring and security detection in a single, privacy-compliant device for healthcare, education, and commercial facilities."
-        backgroundImage={bannerImage}
-        customClass="min-h-[70vh]"
-        contentClass="max-w-2xl ps-28 px-"
-        h2Class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-left "
-        pClass="text-lg md:text-xl text-left text-[#121535]"
-      />
-
+     {/* Hero Section */}
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title="HALO Smart Sensor"
+          subtitle="Advanced environmental monitoring and security detection in a single, privacy-compliant device for healthcare, education, and commercial facilities."
+          image={bannerImage}
+        />
       {/* Trusted By Section */}
       <TrustedBy />
       

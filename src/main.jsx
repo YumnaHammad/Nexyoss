@@ -2,8 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
+// import Login from './pages/Auth/Login.jsx';
+// import Signup from './pages/Auth/Signup.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import { ToastContainer } from 'react-toastify';
 

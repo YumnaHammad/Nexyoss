@@ -1,5 +1,5 @@
 import React from 'react'
-import Productcards from './Productcards'
+import Productcards from '../components/cards/Productcards'
 import Contact from './Contact'
 import BannerProCamera from './BannerProCamera'
 

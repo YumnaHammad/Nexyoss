@@ -1,5 +1,4 @@
-import React from 'react';
-import Banner from '../../components/Banner';
+import React ,{useEffect,useState} from 'react';
 import TrustedBy from '../../components/SpaceOccupancy/TrustedBy';
 import SecurityTabs from '../../components/SpaceOccupancy/SecurityTabs';
 import { HiOutlineExclamationTriangle } from "react-icons/hi2";
@@ -13,8 +12,10 @@ import { RiSecurePaymentLine } from 'react-icons/ri';
 import { GrShieldSecurity } from 'react-icons/gr';
 import Download from '../../components/Download';
 import ReliableResources from '../../components/Solution/SmartRestroom/ReliableResources';
+import BannerSection from '../../components/BannerSection';
 
 const SmartApartment = () => {
+     const [BannerData, setBannerData] = useState(null);
   const securityTabs = [
     {
       label: "Smart Security",
@@ -99,18 +100,36 @@ const SmartApartment = () => {
         "https://pelco-566282893.imgix.net/50-50-module-images/Safe-Cities-50-50-media-text-container-850x850-3.jpg?auto=format&fit=clip&q=80&w=800&s=e4647adb37edc98768ff0a28b08f8756",
     },
   ];
+  const fetchBannerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/smart-apartment/section-1"
+      );
+      const data = await response.json();
+      setBannerData(Array.isArray(data) ? data[0] : data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
+
+    useEffect(() => {
+    fetchBannerData();
+  }, []);
   return (
     <>
-      <Banner 
-        title="Smart Apartment Solutions"
-        description="Revolutionary IoT-powered apartment management systems for enhanced security, comfort, and operational efficiency"
-        backgroundImage="https://www.dahuasecurity.com/asset/upload/banner/20171227/solutions.jpg"
-        customClass="h-96"
-        contentClass="text-center px-36"
-        h2Class="text-6xl font-bold mb-4 text-left"
-        pClass="text-2xl text-left w-2xl"
-      />
-      
+          {/* Hero Section */}
+                {BannerData && (
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title={BannerData.heading}
+          subtitle={BannerData.description}
+          image={BannerData.image}
+        />
+      )}
              <div className="mt-5">
        <TrustedBy />
        <SecurityTabs tabs={securityTabs}/>

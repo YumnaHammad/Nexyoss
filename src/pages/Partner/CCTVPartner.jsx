@@ -1,20 +1,71 @@
 // CCTVPartner.jsx
 import React, { useState, useEffect } from "react";
 import Contact from "../../components/Contact";
-import HeroSection from "../../components/Partner/CCTVPartner/HeroSection";
-import Partners from "../../components/Partner/CCTVPartner/Partners";
-import WhyChooseUsSection from "../../components/Partner/CCTVPartner/WhyChooseUsSection";
-import CCTVSolutions from "../../components/Partner/CCTVPartner/CCTVSolutions";
-import Partner from "../../components/Partner/CCTVPartner/ChannelPartner";
-
+import HeroSection from "../../components/HeroSection";
+import WhyChooseUs from "../../components/WhyChooseUs";
+import SolutionsSlider from "../../components/sliders/SolutionsSlider";
+import BenefitsGrid from "../../components/BenefitsGrid";
+import PartnerHighlight from "../../components/PartnerHighlight";
 
 const CCTVPartner = () => {
-
   const [isVisible, setIsVisible] = useState(false);
-
-  // Animation effects
+  const [cctvPartnerData, setCctvPartnerData] = useState(null);
+  const [cardData, setCardData] = useState([]);
+  const [benefitData, setBenefitData] = useState([]);
+  const [partnerSectionData, setPartnerSectionData] = useState(null);
+  const subHeadings = cctvPartnerData
+    ? [
+        cctvPartnerData.sub_heading1,
+        cctvPartnerData.sub_heading2,
+        cctvPartnerData.sub_heading3,
+      ].filter(Boolean)
+    : [];
+  const fetchCctvPartnerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/cctv-partner/section-3"
+      );
+      const data = await response.json();
+      setCctvPartnerData(data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
+  const fetchSolutionData = async () => {
+    const res = await fetch(
+      "https://nexyos.deeptech.pk/api/cctv-partner/section-4"
+    );
+    const data = await res.json();
+    setCardData(Array.isArray(data) ? data : []);
+  };
+  const fetchBenefitSectionData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/cctv-partner/section-5"
+      );
+      const data = await response.json();
+      setBenefitData(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error fetching section data:", error);
+    }
+  };
+  const fetchPartnerSectionData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/cctv-partner/section-2"
+      );
+      const data = await response.json();
+      setPartnerSectionData(data);
+    } catch (error) {
+      console.error("Error fetching section data:", error);
+    }
+  };
   useEffect(() => {
     setIsVisible(true);
+    fetchCctvPartnerData();
+    fetchSolutionData();
+    fetchBenefitSectionData();
+    fetchPartnerSectionData();
   }, []);
   // CSS animations
   const animations = `
@@ -116,15 +167,110 @@ const CCTVPartner = () => {
     <>
       <style>{animations}</style>
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        title="CCTV Channel Partner Program"
+        subtitle=" Join Nexyos as a CCTV Channel Partner and deliver cutting-edge
+                security solutions to your customers. Access our comprehensive
+                portfolio of surveillance technologies and build a profitable
+                security business."
+        terminalTitle="Security Command Center"
+        Terminalcode={{
+          textColor: "#00ff00",
+          code: `> Nexyos CCTV Partner Program
+> Security Level: MAXIMUM
+> Surveillance Status: ACTIVE
+> AI Detection: ENABLED
+> Access Control: SECURED
+
+Welcome to the future of security!`,
+        }}
+        badge={{
+          text: "SECURE",
+          bgColor: "#e74c3c",
+          textColor: "white",
+        }}
+        secondaryButton={{
+          label: "Security Solutions",
+          icon: "ph ph-shield-check",
+          textColor: "#00d4ff",
+          borderColor: "2px solid #00d4ff",
+          backgroundColor: "transparent",
+          onClick: () => {},
+        }}
+        primaryButton={{
+          label: "Become Partner",
+          icon: "ph ph-handshake",
+          bgColor: "#e74c3c",
+          textColor: "white",
+          borderColor: "#e74c3c",
+          onClick: () => {},
+        }}
+      />
       {/* CCTV Channel Partner Program Section */}
-      <Partners/>
+      {partnerSectionData && (
+        <PartnerHighlight
+          image={partnerSectionData.image}
+          imageAlt="CCTV Partner"
+          badge={{
+            text: "Security Zone",
+            bgColor: "#e74c3c",
+            textColor: "#fff",
+          }}
+          cameraIcon="ph ph-camera"
+          heading={partnerSectionData.heading}
+          headingIcon="ph ph-shield-check"
+          description={partnerSectionData.description}
+          stats={[
+            {
+              icon: "ph ph-camera",
+              value: partnerSectionData.sub_heading1,
+              label: "Cameras",
+            },
+            {
+              icon: "ph ph-globe",
+              value: partnerSectionData.sub_heading2,
+              label: "Countries",
+            },
+            {
+              icon: "ph ph-users",
+              value: partnerSectionData.sub_heading3,
+              label: "Partners",
+            },
+          ]}
+        />
+      )}
       {/* Why Choose Nexyos CCTV Section */}
-      <WhyChooseUsSection/>
+      {cctvPartnerData && (
+        <WhyChooseUs
+          heading={cctvPartnerData.heading || ""}
+          subHeadings={[
+            cctvPartnerData.sub_heading1,
+            cctvPartnerData.sub_heading2,
+            cctvPartnerData.sub_heading3,
+          ].filter(Boolean)}
+          image={cctvPartnerData.image || ""}
+          badgeText="Live Preview"
+        />
+      )}
       {/* CCTV Solutions Section with Swiper */}
-      <CCTVSolutions/>
+      <SolutionsSlider
+        title="CCTV Solutions & Products"
+        icon="ph ph-camera"
+        subtitle="Our comprehensive CCTV portfolio includes high-definition IP
+            cameras, advanced NVR systems, intelligent video analytics, and
+            cloud-based solutions. From small business installations to
+            enterprise-grade security systems, we provide scalable solutions
+            that meet diverse customer requirements."
+         background="linear-gradient(135deg, #1a1a1a 0%, #2c3e50 25%, #34495e 50%, #2c3e50 75%, #1a1a1a 100%)"
+        data={cardData}
+      />
       {/* Channel Partner Benefits Section */}
-      <Partner/>
+      <BenefitsGrid
+        title="Channel Partner Benefits"
+        subtitle="Discover the advantages of becoming a Nexyos CCTV channel partner"
+        icon="ph ph-star"
+        data={benefitData}
+      />
       {/* Contact */}
       <Contact />
     </>

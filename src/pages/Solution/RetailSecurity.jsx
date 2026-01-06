@@ -1,12 +1,13 @@
-import React from 'react';
-import Banner from '../../components/Banner';
+import React , { useState , useEffect} from 'react';
 import WhatWeOffer from '../../components/Solution/RetailSolution/WhatWeOffer'
 import ImageRightText from '../../components/ImageRightText';
-import CarouselCard from '../../components/CarouselCard';
+import CarouselCard from '../../components/cards/CarouselCard';
 import south_wales_police from '../../assets/images/Solution/new-south-wales-police-logo.png'
 import Download from '../../components/Download';
+import BannerSection from '../../components/BannerSection';
 
 const RetailSecurity = () => {
+     const [BannerData, setBannerData] = useState(null);
   const citySurveillanceSlides = [
     {
       id: 1,
@@ -64,18 +65,36 @@ const RetailSecurity = () => {
       logoClass: "w-80 mb-6",
     },
   ];
+  const fetchBannerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/retail-security/section-1"
+      );
+      const data = await response.json();
+      setBannerData(Array.isArray(data) ? data[0] : data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
 
+    useEffect(() => {
+    fetchBannerData();
+  }, []);
   return (
     <div>
-      <Banner
-        title="Retail Security Solutions"
-        description="Advanced loss prevention and security systems designed to protect retail environments with intelligent monitoring and theft detection"
-        backgroundImage="https://www.dahuasecurity.com/asset/upload/banner/20171227/solutions.jpg"
-        containerClass="top-1/2 transform -translate-y-1/2"
-        contentClass="max-w-2xl"
-        h2Class="text-5xl md:text-5xl font-bold mb-4 text-white text-left"
-        pClass="text-lg md:text-xl opacity-90 text-white text-left"
-      />
+           {/* Hero Section */}
+                 {BannerData && (
+        <BannerSection
+          gradient="none"
+          content="justify-content-center"
+          textAlign="text-center"
+          textColor="text-white"
+          title={BannerData.heading}
+          subtitle={BannerData.description}
+          image={BannerData.image}
+        />
+      )}
       <div className="mt-5">
      <WhatWeOffer/>
      <ImageRightText

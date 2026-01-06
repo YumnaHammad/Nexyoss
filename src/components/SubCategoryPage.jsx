@@ -7,7 +7,7 @@ import miniCAmeraGroup from "../assets/images/nexyos/miniCAmeraGroup.png";
 import Contact from "./Contact";
 import Tab from "./Solution/TrafficTab/Tab";
 import HotProductSlider from "./Solution/OutstandingFeatures/HotProductSlider";
-import SliderTest from "./SliderTest";
+import SliderTest from "../components/sliders/SliderTest";
 import { motion } from "framer-motion";
 import '../style/SubCategoryPage.css';
 import Breadcrumb from "./Breadcrumb";
