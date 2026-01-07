@@ -22,6 +22,8 @@ import BannerSection from "../../components/BannerSection";
 
 const Healthcare = () => {
   const [BannerData, setBannerData] = useState(null);
+  const [cardCarouselData, setCardCarouselData] = useState([]);
+  const [certificateData, setcertificateData] = useState([])
 
   const securityTabs = [
     {
@@ -157,75 +159,75 @@ const Healthcare = () => {
       link: "#",
     },
   ];
-  const citySurveillanceSlides = [
-    {
-      id: 1,
-      image:
-        "https://pelco-891395695.imgix.net/t-mobile-arena-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=5c12a5c6de374a476c72f64ea0e5eed5",
-      logo: "https://pelco-891395695.imgix.net/c1_v1_t-mobile_Logo-copy.png?auto=format&fit=clip&q=80&w=328&s=1aa181bc178265d424c448c722ac7979",
-      title: "T‑Mobile Arena",
-      quote:
-        "To provide a best-in-class entertainment experience, T‑Mobile Arena invested in Pelco’s surveillance systems for uncompromised safety and security.",
-      author: "Ahmet Yılmaz, Director of Urban Security, Istanbul Municipality",
-      link: "#",
-      linkText: "Read this case study",
-      logoClass: "w-80 mb-6",
-    },
-    {
-      id: 2,
-      image:
-        "https://pelco-891395695.imgix.net/chukchansi-casino-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=264b574f4e148c9367d53722c3d8fce3",
-      logo: "https://pelco-566282893.imgix.net/c1_v1_Chukchansi_Logo_2023-01-12-022321_iycj.png?auto=format&fit=clip&q=80&w=328&s=7b23920962b8e96f270824d266b3c2b0",
-      title: "Chukchansi Gold Casino & Resort",
-      quote:
-        "“We’ve been able to meet regulatory demands and ensure a safe and secure experience for our staff and guests by leveraging new technology. We couldn’t be more pleased.”",
-      author:
-        "Tommy McDonald, Surveillance Manager for Chukchansi Gold Casino and Resort",
-      link: "#",
-      linkText: "Read this case study",
-      logoClass: "w-80 mb-6",
-    },
-    {
-      id: 3,
-      image:
-        "https://pelco-891395695.imgix.net/fresno-airport-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=927f54157ce1650ebb64df05303cf532",
-      logo: "https://pelco-891395695.imgix.net/c1_v1_Fresno_Yosemite_Airport_Logo.png?auto=format&fit=clip&q=80&w=328&s=8c5dd9217a49ba9dbb48f6d20c3220cd",
-      title: "Fresno Yosemite International Airport",
-      quote:
-        "The comprehensive surveillance solution has transformed our airport security operations. We can now monitor all critical areas simultaneously while maintaining efficient passenger flow and ensuring safety standards.",
-      author: "Joe Maskovich, Chief of Public Safety for Fresno Airports",
-      link: "#",
-      linkText: "Read this case study",
-      logoClass: "w-80 mb-6",
-    },
-    {
-      id: 4,
-      image:
-        "https://pelco-891395695.imgix.net/chukchansi-casino-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=264b574f4e148c9367d53722c3d8fce3",
-      logo: "https://pelco-566282893.imgix.net/c1_v1_Chukchansi_Logo_2023-01-12-022321_iycj.png?auto=format&fit=clip&q=80&w=328&s=7b23920962b8e96f270824d266b3c2b0",
-      title: "Chukchansi Gold Casino & Resort",
-      quote:
-        "“We’ve been able to meet regulatory demands and ensure a safe and secure experience for our staff and guests by leveraging new technology. We couldn’t be more pleased.”",
-      author:
-        "Tommy McDonald, Surveillance Manager for Chukchansi Gold Casino and Resort",
-      link: "#",
-      linkText: "Read this case study",
-      logoClass: "w-80 mb-6",
-    },
-    {
-      id: 5,
-      image:
-        "https://pelco-891395695.imgix.net/t-mobile-arena-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=5c12a5c6de374a476c72f64ea0e5eed5",
-      logo: "https://pelco-891395695.imgix.net/c1_v1_t-mobile_Logo-copy.png?auto=format&fit=clip&q=80&w=328&s=1aa181bc178265d424c448c722ac7979",
-      title: "T‑Mobile Arena",
-      quote:
-        "To provide a best-in-class entertainment experience, T‑Mobile Arena invested in Pelco’s surveillance systems for uncompromised safety and security.",
-      author: "Ahmet Yılmaz, Director of Urban Security, Istanbul Municipality",
-      link: "#",
-      linkText: "Read this case study",
-      logoClass: "w-80 mb-6",
-    },
-  ];
+  // const citySurveillanceSlides = [
+  //   {
+  //     id: 1,
+  //     image:
+  //       "https://pelco-891395695.imgix.net/t-mobile-arena-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=5c12a5c6de374a476c72f64ea0e5eed5",
+  //     logo: "https://pelco-891395695.imgix.net/c1_v1_t-mobile_Logo-copy.png?auto=format&fit=clip&q=80&w=328&s=1aa181bc178265d424c448c722ac7979",
+  //     title: "T‑Mobile Arena",
+  //     quote:
+  //       "To provide a best-in-class entertainment experience, T‑Mobile Arena invested in Pelco’s surveillance systems for uncompromised safety and security.",
+  //     author: "Ahmet Yılmaz, Director of Urban Security, Istanbul Municipality",
+  //     link: "#",
+  //     linkText: "Read this case study",
+  //     logoClass: "w-80 mb-6",
+  //   },
+  //   {
+  //     id: 2,
+  //     image:
+  //       "https://pelco-891395695.imgix.net/chukchansi-casino-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=264b574f4e148c9367d53722c3d8fce3",
+  //     logo: "https://pelco-566282893.imgix.net/c1_v1_Chukchansi_Logo_2023-01-12-022321_iycj.png?auto=format&fit=clip&q=80&w=328&s=7b23920962b8e96f270824d266b3c2b0",
+  //     title: "Chukchansi Gold Casino & Resort",
+  //     quote:
+  //       "“We’ve been able to meet regulatory demands and ensure a safe and secure experience for our staff and guests by leveraging new technology. We couldn’t be more pleased.”",
+  //     author:
+  //       "Tommy McDonald, Surveillance Manager for Chukchansi Gold Casino and Resort",
+  //     link: "#",
+  //     linkText: "Read this case study",
+  //     logoClass: "w-80 mb-6",
+  //   },
+  //   {
+  //     id: 3,
+  //     image:
+  //       "https://pelco-891395695.imgix.net/fresno-airport-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=927f54157ce1650ebb64df05303cf532",
+  //     logo: "https://pelco-891395695.imgix.net/c1_v1_Fresno_Yosemite_Airport_Logo.png?auto=format&fit=clip&q=80&w=328&s=8c5dd9217a49ba9dbb48f6d20c3220cd",
+  //     title: "Fresno Yosemite International Airport",
+  //     quote:
+  //       "The comprehensive surveillance solution has transformed our airport security operations. We can now monitor all critical areas simultaneously while maintaining efficient passenger flow and ensuring safety standards.",
+  //     author: "Joe Maskovich, Chief of Public Safety for Fresno Airports",
+  //     link: "#",
+  //     linkText: "Read this case study",
+  //     logoClass: "w-80 mb-6",
+  //   },
+  //   {
+  //     id: 4,
+  //     image:
+  //       "https://pelco-891395695.imgix.net/chukchansi-casino-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=264b574f4e148c9367d53722c3d8fce3",
+  //     logo: "https://pelco-566282893.imgix.net/c1_v1_Chukchansi_Logo_2023-01-12-022321_iycj.png?auto=format&fit=clip&q=80&w=328&s=7b23920962b8e96f270824d266b3c2b0",
+  //     title: "Chukchansi Gold Casino & Resort",
+  //     quote:
+  //       "“We’ve been able to meet regulatory demands and ensure a safe and secure experience for our staff and guests by leveraging new technology. We couldn’t be more pleased.”",
+  //     author:
+  //       "Tommy McDonald, Surveillance Manager for Chukchansi Gold Casino and Resort",
+  //     link: "#",
+  //     linkText: "Read this case study",
+  //     logoClass: "w-80 mb-6",
+  //   },
+  //   {
+  //     id: 5,
+  //     image:
+  //       "https://pelco-891395695.imgix.net/t-mobile-arena-image-850x638.jpg?auto=format&fit=clip&q=80&w=900&s=5c12a5c6de374a476c72f64ea0e5eed5",
+  //     logo: "https://pelco-891395695.imgix.net/c1_v1_t-mobile_Logo-copy.png?auto=format&fit=clip&q=80&w=328&s=1aa181bc178265d424c448c722ac7979",
+  //     title: "T‑Mobile Arena",
+  //     quote:
+  //       "To provide a best-in-class entertainment experience, T‑Mobile Arena invested in Pelco’s surveillance systems for uncompromised safety and security.",
+  //     author: "Ahmet Yılmaz, Director of Urban Security, Istanbul Municipality",
+  //     link: "#",
+  //     linkText: "Read this case study",
+  //     logoClass: "w-80 mb-6",
+  //   },
+  // ];
   const certifications = [
     {
       icon: "https://pelco-891395695.imgix.net/c1_v1_Cybersecurity_Compliant.png?auto=format&fit=clip&q=80&w=1168&s=25654c4b78f3309486cd721707e9279e",
@@ -261,9 +263,34 @@ const Healthcare = () => {
       console.error("Error fetching CCTV partner data:", error);
     }
   };
-
+ const fetchCardCarouselData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/health-care/section-2"
+      );
+      const data = await response.json();
+      setCardCarouselData(data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
+const fetchCertificateData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/health-care/section-3"
+      );
+      const data = await response.json();
+      setcertificateData(data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
   useEffect(() => {
     fetchBannerData();
+    fetchCardCarouselData();
+    fetchCertificateData();
   }, []);
   return (
     <>
@@ -272,7 +299,7 @@ const Healthcare = () => {
           gradient="none"
           content="justify-content-center"
           textAlign="text-center"
-          textColor="text-white"
+          textColor="text-black"
           title={BannerData.heading}
           subtitle={BannerData.description}
           image={BannerData.image}
@@ -303,8 +330,8 @@ const Healthcare = () => {
 
       <div className="mt-32">
         <h4>Our customer stories</h4>
-        {/* Carousel Section */}
-        <CarouselCard slides={citySurveillanceSlides} />
+       {/* Carousel Section */}
+            <CarouselCard slides={cardCarouselData} />
       </div>
       <section className="py-12 bg-white text-center mt-48">
         <h2 className="text-2xl font-bold mb-2">
@@ -316,15 +343,15 @@ const Healthcare = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {certifications.map((item, index) => (
+          {certificateData.map((item, index) => (
             <div key={index} className="flex flex-col items-center text-center">
               <img
-                src={item.icon}
+                src={item.image}
                 alt={item.title}
                 className=" mb-4"
                 style={{ height: "100px", width: "46%" }}
               />
-              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <h3 className="text-lg font-semibold">{item.heading}</h3>
               <p className="text-gray-600 mt-2">{item.description}</p>
             </div>
           ))}

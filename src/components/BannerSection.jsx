@@ -22,6 +22,8 @@ const BannerSection = ({
       textAlign: "center",
       animation: "fadeInUp 1.2s ease-out",
       backgroundBlendMode: "overlay",
+      height: "auto",
+       minHeight: "400px", 
     },
     heroTitle: {
       fontSize: "3.5rem",

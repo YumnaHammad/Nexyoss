@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import TypicalApplications from "./TypicalApplications";
-import SuperiorHighlights from "./SuperiorHighlights";
 import IntegratedPlatforms from "./IntegratedPlatforms";
 import SmartWorkspace from "./SmartWorkspace";
 import FeatureProducts from "./FeatureProductsSlider";
+import HighlightSlider from "../HighlightSlider";
 
 const FeatureTiles = () => {
   const overviewRef = useRef(null);
@@ -23,7 +23,71 @@ const FeatureTiles = () => {
     { name: "Products", key: "products", ref: productsRef },
     { name: "Success Story", key: "success", ref: successRef },
   ];
-
+const cards = [
+  {
+    id: 1,
+    name: "Flexible LoRaWAN® and PoE Versions",
+    description:
+      "Alternative LoRaWAN® and Ethernet transmission give easy access to different application requirements.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/lorawan-and-poe-icon.png?t=1752826692624",
+  },
+  {
+      id: 2,
+    name: "Versatile People Counting Technology for Diverse Scenarios",
+    description:
+      "Applying AI, PIR, and ToF recognition technologies tailored to different application needs",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/ai-tof-and-pir-icon.png?t=1752826692624",
+  },
+  {
+      id: 3,
+    name: "Up to 99.8% Ultra-high Accuracy",
+    description:
+      "Increasing accuracy to 99.8% with AI and ToF technologies.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/accuracy-icon.png?t=1752826692624",
+  },
+  {
+      id: 4,
+    name: "100% Anonymous Detection",
+    description:
+      "Being GDPR-compliant, no PII is involved with the help of privacy-featured technologies and LoRaWAN® transmission.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/anonymous-detection-icon.png?t=1752826692624",
+  },
+  {
+      id: 5,
+    name: "Staff Detection and Adults/Children Differentiation",
+    description:
+      "Giving direct access to recognize specific categories of individuals including staff detection and adults/children differentiation.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/staff-detection-and-adults-and-children-differentiation.png?t=1752826692624",
+  },
+    {
+      id: 6,
+    name: "Bi-Directional Smart People Counting",
+    description:
+      "Bi-Directional people counting with smart U-turn filtering to improve accuracy and performance.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/bi-directional-people-counting-and-smart-u-turn.png?t=1752826692624",
+  },
+    {
+      id: 7,
+    name: "Large Detection Area",
+    description:
+      "Covering a wide area of 78 square meters.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/large-detection-area.png?t=1752826692624",
+  },
+    {
+      id: 8,
+    name: "Milesight D2D Communication",
+    description:
+      "Allow for easily communicate between Milesight LoRaWAN® devices within 1 second.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/milesight-d2d-communication.png?t=1752826692624",
+  },
+    {
+      id: 9,
+    name: "Great Compatibility",
+    description:
+      "The strong scalable capacity unlocks the potential of the premises.",
+    image: "https://www.milesight.com/static/pc/en/solution/smart-space-occupancy/compatibility-icon.png?t=1752826692624",
+  },
+];
   const scrollToSection = (ref, tabName) => {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     setActiveTab(tabName); // for instant highlight on click
@@ -105,7 +169,7 @@ const FeatureTiles = () => {
       </section>
 
       <TypicalApplications ref={applicationRef} />
-      <SuperiorHighlights ref={highlightRef}/> 
+        <HighlightSlider title="Superior Highlights" items={cards} ref={highlightRef}/>
       <IntegratedPlatforms ref={benefitRef} />
       <SmartWorkspace ref={productsRef}/>
       <FeatureProducts  ref={successRef} />

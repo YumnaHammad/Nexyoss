@@ -34,7 +34,7 @@ export default function CarouselCard({ slides }) {
             {/* Image */}
             <div className="w-1/2">
               <img
-                src={slide.image}
+                src={slide.image1|| slide.image}
                 alt={slide.title}
                 className="w-full h-full "
                 style={{borderRadius: '0px'}}/>
@@ -42,14 +42,14 @@ export default function CarouselCard({ slides }) {
 
             {/* Text Content */}
             <div className="w-1/2 p-10 flex flex-col justify-center">
-              {slide.logo && (
+              {slide.image2 && (
                 <img
-                  src={slide.logo}
+                  src={slide.image2|| slide.logo}
                   alt="logo"
-                  className={`${slide.logoClass ? slide.logoClass : "mb-6"} mx-auto`}/>
+                  className={`w-[23%] mb-6  mx-auto`}/>
               )}
-              <h2 className="text-2xl font-bold mb-4">{slide.title}</h2>
-              <p className="text-gray-600 mb-6 italic">"{slide.quote}"</p>
+              <h2 className="text-2xl font-bold mb-4">{slide.heading|| slide.title}</h2>
+              <p className="text-gray-600 mb-6 italic">"{slide.description || slide.text}"</p>
               <p className="font-bold mb-6 text-black">- {slide.author}</p>
               {slide.link && (
                 <a

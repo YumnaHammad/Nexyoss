@@ -156,12 +156,12 @@ const Header = () => {
           items: [
             {
               title: "Video Surveillance",
-              path: "/solution/video-surveillance",
+              path: "/solution/videoSurveillance",
             },
-            { title: "Intelligent Traffic Solution", path: "/solution/intelligent-traffic-solution" },
+            { title: "Intelligent Traffic Solution", path: "/solution/IntelligentTrafficSolution" },
             { title: "Smart Restroom", path: "/solution/smartrestroom" },
-            { title: "Indoor Air Quality", path: "/solution/indoor-air-quality" },
-            { title: "Smart Space", path: "/solution/smart-spaces" },
+            { title: "Indoor Air Quality", path: "/solution/IndoorAirQuality" },
+            { title: "Smart Space", path: "/solution/smartSpace" },
             { title: "People Counting", path: "/Solution/PeopleCounting" },
             { title: "Smart HVAC Management", path: "/solution/smart-hvac-management" },
             { title: "Space Occupancy", path: "/Solution/SpaceOccupancy" },
@@ -510,7 +510,7 @@ const Header = () => {
                               <ul>
                                 <li>
                                   <NavLink
-                                    to="/solution/video-surveillance"
+                                    to="/solution/videoSurveillance"
                                     className="common-dropdown__link"
                                   >
                                     Video Surveillance
@@ -518,7 +518,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/city-surveillance"
+                                    to="/solution/citySurveillance"
                                     className="common-dropdown__link"
                                   >
                                     City Surveillance
@@ -565,7 +565,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/smart-spaces"
+                                    to="/solution/smartSpace"
                                     className="common-dropdown__link"
                                   >
                                     Smart Space
@@ -573,7 +573,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/smartapartment"
+                                    to="/solution/smartAppartment"
                                     className="common-dropdown__link"
                                   >
                                     Smart Apartment
@@ -581,7 +581,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/displaycontrol"
+                                    to="/solution/displayControl"
                                     className="common-dropdown__link"
                                   >
                                     Display & Control
@@ -589,7 +589,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/smart-parking"
+                                    to="/solution/smartParking"
                                     className="common-dropdown__link"
                                   >
                                     Smart Parking
@@ -604,7 +604,7 @@ const Header = () => {
                               <ul>
                                 <li>
                                   <NavLink
-                                    to="/solution/intelligent-traffic-solution"
+                                    to="/solution/IntelligentTrafficSolution"
                                     className="common-dropdown__link"
                                   >
                                     Intelligent Traffic Solution
@@ -612,7 +612,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/manufacturing"
+                                    to="/solution/Manufacturing"
                                     className="common-dropdown__link"
                                   >
                                     Manufacturing
@@ -620,7 +620,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/education"
+                                    to="/solution/Education"
                                     className="common-dropdown__link"
                                   >
                                     Education
@@ -628,7 +628,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/indoor-air-quality"
+                                    to="/solution/IndoorAirQuality"
                                     className="common-dropdown__link"
                                   >
                                     Indoor Air Quality
@@ -636,7 +636,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/solution/energy-efficiency"
+                                    to="/solution/EnergyEfficiency"
                                     className="common-dropdown__link"
                                   >
                                     Energy Efficiency
