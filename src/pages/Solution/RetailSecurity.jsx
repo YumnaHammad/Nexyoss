@@ -85,7 +85,6 @@ const RetailSecurity = () => {
       );
       const data = await response.json();
       setBannerData(Array.isArray(data) ? data[0] : data);
-      console.log("Banner Data:", data);
     } catch (error) {
       console.error("Error fetching CCTV partner data:", error);
     }
@@ -97,7 +96,6 @@ const RetailSecurity = () => {
       );
       const data = await response.json();
       setWhatOfferData(Array.isArray(data) ? data : []);
-      console.log("Banner Data:", data);
     } catch (error) {
       console.error("Error fetching CCTV partner data:", error);
     }
@@ -120,7 +118,8 @@ const RetailSecurity = () => {
         "https://nexyos.deeptech.pk/api/retail-security/section-5"
       );
       const data = await response.json();
-      setDownloadData(data);
+      setDownloadData(Array.isArray(data) ? data[0] : data);
+
     } catch (error) {
       console.error("Error fetching CCTV partner data:", error);
     }
@@ -188,12 +187,12 @@ const RetailSecurity = () => {
           <h2 className="text-center text-4xl font-bold">Success Stories</h2>
           <CarouselCard slides={citySurveillanceSlides} />
         </div>
-        {downloadData && <Download 
+        {downloadData && (<Download 
         image = {downloadData.image}
         heading= {downloadData.heading}
         sub_heading ={downloadData.sub_heading}
         paragraph = {downloadData.paragraph}
-        pdf = {downloadData.pdf} />}
+        pdf = {downloadData.pdf} />)}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import BannerSection from '../../components/BannerSection';
 
 const SmartApartment = () => {
      const [BannerData, setBannerData] = useState(null);
+       const [downloadData, setDownloadData] = useState(null);
   const securityTabs = [
     {
       label: "Smart Security",
@@ -113,8 +114,21 @@ const SmartApartment = () => {
     }
   };
 
+      const fetchDownloadPdfData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/smart-apartment/section-3"
+      );
+      const data = await response.json();
+      setDownloadData(Array.isArray(data) ? data[0] : data);
+
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
     useEffect(() => {
     fetchBannerData();
+    fetchDownloadPdfData();
   }, []);
   return (
     <>
@@ -134,7 +148,12 @@ const SmartApartment = () => {
        <TrustedBy />
        <SecurityTabs tabs={securityTabs}/>
        <ReliableResources/>
-       <Download/>
+          {downloadData && (<Download 
+        image = {downloadData.image}
+        heading= {downloadData.heading}
+        sub_heading ={downloadData.sub_heading}
+        paragraph = {downloadData.paragraph}
+        pdf = {downloadData.pdf} />)}
         </div>
     </>
   );
