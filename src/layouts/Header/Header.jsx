@@ -177,12 +177,12 @@ const Header = () => {
           title: "Company",
           items: [
             { type: "heading", title: "Company Info" },
-            { title: "About Us", path: "/About" },
-            { title: " Our Brand", path: "/Brand" },
-            { title: "Events", path: "/Events" },
+            { title: "About Us", path: "/company/aboutUs" },
+            { title: " Our Brand", path: "/company/ourBrand" },
+            { title: "Events", path: "/company/events" },
             { type: "heading", title: "Library" },
-            { title: "  Blog", path: "/Blog" },
-            { title: "  News", path: "/News" },
+            { title: "Blog", path: "/company/blog" },
+            { title: "  News", path: "/company/new" },
           ],
         },
       },
@@ -664,7 +664,7 @@ const Header = () => {
                                <ul>
                                  <li>
                                    <NavLink
-                                     to="/About"
+                                     to="/company/aboutUs"
                                      className="common-dropdown__link"
                                    >
                                      About Us
@@ -672,7 +672,7 @@ const Header = () => {
                                  </li>
                                  <li>
                                    <NavLink
-                                     to="/Brand"
+                                     to="/company/ourBrand"
                                      className="common-dropdown__link"
                                    >
                                      Our Brand
@@ -680,7 +680,7 @@ const Header = () => {
                                  </li>
                                  <li>
                                    <NavLink
-                                     to="/Events"
+                                     to="/company/events"
                                      className="common-dropdown__link"
                                    >
                                      Events
@@ -695,7 +695,7 @@ const Header = () => {
                                <ul>
                                  <li>
                                    <NavLink
-                                     to="/Blog"
+                                     to="/company/blog"
                                      className="common-dropdown__link"
                                    >
                                      Blog
@@ -703,7 +703,7 @@ const Header = () => {
                                  </li>
                                  <li>
                                    <NavLink
-                                     to="/News"
+                                     to="/company/new"
                                      className="common-dropdown__link"
                                    >
                                      News

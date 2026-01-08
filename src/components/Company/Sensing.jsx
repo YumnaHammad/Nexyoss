@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import styles from "../../style/SensingProducts.module.css";
 
-const SensingProducts = () => {
+const SensingProducts = ({heading,heading2,description}) => {
   const products = [
     {
       name: "Indoor Air Quality Monitoring",
@@ -54,16 +54,11 @@ const SensingProducts = () => {
         <Row className="justify-content-center mb-5">
           <Col lg={8} className="text-center">
             <h2 className={styles.sectionTitle}  data-aos="fade-right">
-              Multi-potential Sensing Products
+              {heading}
             </h2>
-            <h3 className={styles.sectionSubtitle}  data-aos="fade-right">We Sense What Matters</h3>
+            <h3 className={styles.sectionSubtitle}  data-aos="fade-right">{heading2}</h3>
             <p className={styles.sectionDescription}>
-              Recognizing the value of data in today's digitized world.
-              Milesight has evolved beyond our initial roots. Now, we cater to
-              the increasing demand for reliable data with our multi-potential
-              sensing products. We believe in the power of relevant, purposeful
-              sensing, focusing on the data that adds value, reflects patterns,
-              and assists decision-making.
+           {description}
             </p>
           </Col>
         </Row>

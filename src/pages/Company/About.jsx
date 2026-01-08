@@ -3,18 +3,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCreative, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-creative";
-import BannerAbout from "../../components/Company/BannerAbout";
 import "../../style/About.css";
 import RPlayer from "../../components/Company/ReactPlayer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BannerSection from "../../components/BannerSection";
 
 const About = () => {
   const [data, setData] = useState(null);
+  const [BannerData, setBannerData] = useState(null);
+  const fetchBannerData = async () => {
+    try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/about-us/section-1"
+      );
+      const data = await response.json();
+      setBannerData(Array.isArray(data) ? data[0] : data);
+      console.log("Banner Data:", data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
+    }
+  };
 
   useEffect(() => {
     axios
-      .get('https://nexyos.deeptech.pk/api/about-us/section-3')
+      .get("https://nexyos.deeptech.pk/api/about-us/section-3")
       .then((response) => {
         const resp = response.data;
         if (Array.isArray(resp)) {
@@ -26,6 +39,8 @@ const About = () => {
       .catch((error) => {
         console.error("Error fetching banner data:", error);
       });
+
+    fetchBannerData();
   }, []);
 
   // ✅ Add a guard clause here
@@ -52,12 +67,24 @@ const About = () => {
 
   return (
     <>
-      <BannerAbout />
+      {BannerData && (
+        <BannerSection
+          gradient="none"
+          content="justify-content-left"
+          textAlign="text-left"
+          textColor="text-[#121535]"
+          title={BannerData.head}
+          subtitle={BannerData.desc}
+          image={BannerData.image}
+        />
+      )}
       <RPlayer />
       <section className="container superior">
         <div className="center-wrap">
           <div className="content wow animate__fadeInUp">
-            <h2 className="title" data-aos="fade-right">Superior Strength</h2>
+            <h2 className="title" data-aos="fade-right">
+              Superior Strength
+            </h2>
             <div className="swipers">
               <Swiper
                 grabCursor={true}
@@ -81,9 +108,23 @@ const About = () => {
                         const apiItem = data[groupIndex * 3 + index];
                         if (!apiItem) return null;
 
-                        const image = apiItem.image || apiItem.img || apiItem.image_url || apiItem.src || "";
-                        const head = apiItem.head || apiItem.title || apiItem.heading || apiItem.name || "";
-                        const desc = apiItem.desc || apiItem.description || apiItem.body || "";
+                        const image =
+                          apiItem.image ||
+                          apiItem.img ||
+                          apiItem.image_url ||
+                          apiItem.src ||
+                          "";
+                        const head =
+                          apiItem.head ||
+                          apiItem.title ||
+                          apiItem.heading ||
+                          apiItem.name ||
+                          "";
+                        const desc =
+                          apiItem.desc ||
+                          apiItem.description ||
+                          apiItem.body ||
+                          "";
 
                         return (
                           <div className="card" key={index}>
@@ -93,7 +134,9 @@ const About = () => {
                               className="lazyloaded"
                               title={`icon for ${head}`}
                             />
-                            <h3 className="card-title" data-aos="fade-right">{head}</h3>
+                            <h3 className="card-title" data-aos="fade-right">
+                              {head}
+                            </h3>
                             <p className="card-text">{desc}</p>
                           </div>
                         );
