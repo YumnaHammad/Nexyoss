@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const SliderPartner = () => {
+const SliderPartner = ({title,image,index}) => {
   const [currentImage, setCurrentImage] = useState("default");
   const innovations = [
     {
@@ -100,20 +100,18 @@ const SliderPartner = () => {
                 }}
                 className={styles.swiperContainer}
               >
-                {innovations.map((innovation, index) => (
                   <SwiperSlide key={index}>
                     <div className={styles.innovationCard}>
                       <img
-                        src={innovation.image}
-                        alt={innovation.title}
+                        src={image}
+                        alt={title}
                         className={styles.cardImage}
                       />
                       <h3 className={styles.innovationTitle}  data-aos="fade-right">
-                        {innovation.title}
+                        {title}
                       </h3>
                     </div>
                   </SwiperSlide>
-                ))}
               </Swiper>
 
               {/* Custom Navigation */}

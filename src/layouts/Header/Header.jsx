@@ -182,7 +182,7 @@ const Header = () => {
             { title: "Events", path: "/company/events" },
             { type: "heading", title: "Library" },
             { title: "Blog", path: "/company/blog" },
-            { title: "  News", path: "/company/new" },
+            { title: "News", path: "/company/news" },
           ],
         },
       },
@@ -703,7 +703,7 @@ const Header = () => {
                                  </li>
                                  <li>
                                    <NavLink
-                                     to="/company/new"
+                                     to="/company/news"
                                      className="common-dropdown__link"
                                    >
                                      News

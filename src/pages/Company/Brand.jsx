@@ -8,7 +8,10 @@ import BannerSection from "../../components/BannerSection";
 
 const Brand = () => {
   const [BannerData, setBannerData] = useState(null);
-
+  const [brandHeader, setBrandHeader] = useState(null);
+  const [brandCards, setBrandCards] = useState(null);
+  const [iconCards, setIconCards] = useState([]);
+  const [innovativeData, setInnovativeData] = useState(null);
   const fetchBannerData = async () => {
     try {
       const response = await fetch(
@@ -35,15 +38,14 @@ const Brand = () => {
   };
   const [leftData, setLeftData] = useState(null);
   const [rightIcons, setRightIcons] = useState([]);
-  const [brandData, setBrandData] = useState([]);
-const formatDate = (date) => {
-  if (!date) return "";
-  return new Date(date).toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-};
+  const formatDate = (date) => {
+    if (!date) return "";
+    return new Date(date).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   const fetchBrand = async () => {
     try {
@@ -51,9 +53,23 @@ const formatDate = (date) => {
         "https://nexyos.deeptech.pk/api/our-brand/section-3"
       );
       const data = await response.json();
-      setBrandData(Array.isArray(data) ? data[0] : []);
+      if (Array.isArray(data)) {
+        setBrandHeader(data[0]); // headings, description
+        setBrandCards(data[1]); // cards data
+      }
     } catch (error) {
       console.error("Error fetching icon cards:", error);
+    }
+  };
+    const fetchInnovativecards = async () => {
+     try {
+      const response = await fetch(
+        "https://nexyos.deeptech.pk/api/our-brand/section-4"
+      );
+      const data = await response.json();
+      setInnovativeData(Array.isArray(data) ? data[0] : data);
+    } catch (error) {
+      console.error("Error fetching CCTV partner data:", error);
     }
   };
   useEffect(() => {
@@ -66,6 +82,7 @@ const formatDate = (date) => {
       .then((data) => setRightIcons(Array.isArray(data) ? data : []));
     fetchBannerData();
     fetchIconCards();
+    fetchInnovativecards();
     fetchBrand();
   }, []);
   return (
@@ -94,18 +111,16 @@ const formatDate = (date) => {
             <p className="text mb-4 animate__animated animate__fadeInUp">
               {leftData?.description}
             </p>
-             <div className="mt-4 pt-3 border-top text-muted small">
-                        <div>
-                          <strong>Created:</strong>{" "}
-                          {formatDate(leftData?.created_at)}
-                        </div>
-                        <div>
-                          <strong>Last updated:</strong>{" "}
-                          {formatDate(leftData?.updated_at)}
-                        </div>
-                      </div>
+            <div className="mt-4 pt-3 border-top text-muted small">
+              <div>
+                <strong>Created:</strong> {formatDate(leftData?.created_at)}
+              </div>
+              <div>
+                <strong>Last updated:</strong>{" "}
+                {formatDate(leftData?.updated_at)}
+              </div>
+            </div>
           </Col>
-
           {/* Right Content */}
           <Col md={6} className="content-right">
             <Card className="p-4 animate__animated animate__fadeInUp">
@@ -115,10 +130,14 @@ const formatDate = (date) => {
                   <span className="text-primary">Making Sensing Matter</span> so
                   that:
                 </h4>
-
                 <Row className="card__icons g-4">
-                  {rightIcons.map((item) => (
-                    <Col xs={12} md={4} className="card__icon text-center">
+                  {rightIcons.map((item, index) => (
+                    <Col
+                      xs={12}
+                      md={4}
+                      className="card__icon text-center"
+                      key={index}
+                    >
                       <img
                         alt="make sensing matter data icon"
                         src={item.image}
@@ -128,34 +147,7 @@ const formatDate = (date) => {
                       <p className="icon__text">{item.heading}</p>
                     </Col>
                   ))}
-                  {/* 
-                  <Col xs={12} md={4} className="card__icon text-center">
-                    <img
-                      alt="make sensing matter connect icon"
-                      src="https://www.milesight.com/static/pc/en/company/our-brand-new/make-sensing-matter-connect-icon.png"
-                      className="img-fluid mb-3"
-                      style={{ height: "60px" }}
-                    />
-                    <p className="icon__text">
-                      YOU can create meaningful connections with your
-                      surroundings
-                    </p>
-                  </Col>
-
-                  <Col xs={12} md={4} className="card__icon text-center">
-                    <img
-                      alt="make sensing matter impact icon"
-                      src="https://www.milesight.com/static/pc/en/company/our-brand-new/make-sensing-matter-impact-icon.png"
-                      className="img-fluid mb-3"
-                      style={{ height: "60px" }}
-                    />
-                    <p className="icon__text">
-                      YOU have the right product and technology for specific
-                      needs
-                    </p>
-                  </Col> */}
                 </Row>
-
                 <p className="card__text mt-4">
                   To make sensing truly work across challenges, applications,
                   and industries, that's what "matter" means to us.
@@ -165,15 +157,21 @@ const formatDate = (date) => {
           </Col>
         </Row>
       </Container>
-      {brandData && (
+      {brandHeader && brandCards && (
         <SensingProducts
-      heading = {brandData[0].heading} 
-      description = {brandData[0].description}
-      heading2={brandData[0].heading_2}
-      />
+          heading={brandHeader.heading}
+          heading2={brandHeader.heading_2}
+          description={brandHeader.description}
+          cardHeading={brandCards.heading}
+          cardImage={brandCards.image}
+          cardDescription={brandCards.description}
+        />
+      )}
+      {innovativeData &&(
+        <SliderPartner index={innovativeData.id} title={innovativeData.title} image={innovativeData.image} />
       )}
       
-      <SliderPartner />
+    
       <Contact />
     </>
   );
